@@ -1,0 +1,42 @@
+<div *ngIf="resumo">
+    <div class="row row-cols-4 row-cols-lg-2">
+        <div>
+            <app-painel-simples titulo="Consultas Feitas em 30 Dias" tipo="bg-primary" tipoTexto="white">
+                <h3 class="text-center">{{resumo.consultas.consultas_30dias_anteiores}}</h3>
+            </app-painel-simples>
+        </div>
+
+        <div>
+            <app-painel-simples titulo="Consultas Feitas em Uma Semana" tipo="bg-primary" tipoTexto="white">
+                <h3 class="text-center">{{resumo.consultas.consultas_30dias_posteriores}}</h3>
+            </app-painel-simples>
+        </div>
+
+        <div>
+            <app-painel-simples class="box-faturamento" titulo="Faturamento Anterior">
+                <div class="box-faturamento">
+                    <div>
+                        <h1>{{resumo.faturamento.anterior.valor | currency:"BRL"}}</h1>
+                    </div>
+                </div>
+                <div class="alert text-center" role="alert" [ngClass]="resumo.faturamento.anterior.comparativo
+            >= 0 ? 'alert-success' : 'alert-danger'">
+                    <b>{{resumo.faturamento.anterior.comparativo}}%</b>
+                </div>
+
+            </app-painel-simples>
+        </div>
+
+        <div>
+            <app-painel-simples class="box-faturamento" titulo="Faturamento Previsão">
+                <div class="box-faturamento">
+                    <h1 class="text-left">{{resumo.faturamento.previsao.valor | currency:"BRL"}}</h1>
+                </div>
+                <div class="alert text-center" role="alert" [ngClass]="resumo.faturamento.previsao
+            .comparativo >= 0 ? 'alert-success' : 'alert-danger' ">
+                    <b>{{resumo.faturamento.previsao.comparativo}}%</b>
+                </div>
+            </app-painel-simples>
+        </div>
+    </div>
+</div>
